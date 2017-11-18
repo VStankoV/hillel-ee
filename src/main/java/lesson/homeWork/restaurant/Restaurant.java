@@ -84,15 +84,8 @@ public class Restaurant {
 	
 	
 	static Map<DishType, Double> getAvgCalloriesByType() {
-		Map<DishType, List<Dish>> dishTypeListMap = menu.stream().collect(groupingBy(Dish::getType));
-		Map<DishType, Double> result = new HashMap();
-		dishTypeListMap.forEach(
-				(dishType, dishes) -> result.put(dishType, dishes.stream()
-						.mapToDouble(Dish::getCalories)
-						.average().orElse(0.0)
-				)
-		);
-		return result;
+		return menu.stream()
+				.collect(groupingBy(Dish::getType, averagingDouble(Dish::getCalories)));
 	}
 	
 	static Map<DishType, List<String>> getBioDishesByType() {
