@@ -41,7 +41,7 @@ public class Restaurant {
 	);
 	
 	public static void main(String[] args) {
-	
+
 //		1. Вывести названия блюд:
 //			a. только низкокаллорийных
 //		getLowCaloricDishes().forEach(System.out::println);
@@ -49,7 +49,7 @@ public class Restaurant {
 //		getTopNutritious(3).forEach(System.out::println);
 //			c. всех, но отсортированных сначала по БИО, потом по алфавиту
 //		getSortedDishes().forEach(System.out::println);
-		
+
 
 //		2. Посчитать среднюю калорийность по группам: говядина, курица, овощи (Map<DishType, Double>)
 //		getAvgCalloriesByType()
@@ -89,7 +89,7 @@ public class Restaurant {
 		dishTypeListMap.forEach(
 				(dishType, dishes) -> result.put(dishType, dishes.stream()
 						.mapToDouble(Dish::getCalories)
-						.reduce((left, right) -> (left + right) / 2).orElse(0.0)
+						.average().orElse(0.0)
 				)
 		);
 		return result;
